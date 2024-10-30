@@ -6,16 +6,22 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
-    void Start()
+
+    public static CameraController instance;
+
+    private void Awake()
     {
-        player = player.GetComponent<Transform>();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void LateUpdate()
     {
         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z); // Follow the player, by setting camera position to equal player position.

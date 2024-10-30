@@ -44,14 +44,23 @@ TagManager:
   - name: Ground
     uniqueID: 3263594363
     locked: 0
+  - name: Walls
+    uniqueID: 2733925143
+    locked: 0
   - name: Buildings
     uniqueID: 3589010929
     locked: 0
   - name: Doors
     uniqueID: 3876238099
     locked: 0
+  - name: Internal Furniture
+    uniqueID: 386497911
+    locked: 0
   - name: Player
     uniqueID: 294444247
+    locked: 0
+  - name: OutOfBounds
+    uniqueID: 574737109
     locked: 0
   m_RenderingLayers:
   - Default

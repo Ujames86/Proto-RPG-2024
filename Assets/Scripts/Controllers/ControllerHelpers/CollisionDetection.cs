@@ -1,18 +1,20 @@
 using UnityEngine;
 
+
 public class CollisionDetection : MonoBehaviour
 {
-    public PlayerController playerControllerScript;
-    public LayerMask collisionCheckLayerMasks; //layer masks that we want to check collisions on.
-
+    // Script references
+    private PlayerController playerControllerScript;
+    // Layer masks that we want to check collisions on.
+    public LayerMask collisionCheckLayerMasks; 
+    
     private void Awake()
     {
         playerControllerScript = GetComponent<PlayerController>();
-        collisionCheckLayerMasks = LayerMask.GetMask("NonWalkable") | LayerMask.GetMask("Door");
+        collisionCheckLayerMasks = LayerMask.GetMask("NonWalkable");
     }
 
-
-    //CheckForCollision is called from PlayerController.UpdateTargetPosition(). It is called everytime player moves character to cast a ray that detects for a collison in a list of layer masks.
+    //CheckForCollision is called from PlayerController.UpdateTargetPosition(). It is called everytime player moves character to cast a ray that detects for a collison on a nonwalkable tile.
     public void CheckForCollision(Vector2 moveDirection)
     {
         //Debug.DrawRay(transform.position, moveDirection, Color.magenta);
@@ -24,12 +26,7 @@ public class CollisionDetection : MonoBehaviour
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("NonWalkable"))
             {
                 playerControllerScript.isWalkable = false;
-                Debug.Log("hit");
-            }
-            //Door layer check
-            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Door"))
-            {
-                Debug.Log("Door hit, loading new scene " + hit.collider.name);
+                
             }
         }
     }
