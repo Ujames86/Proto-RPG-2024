@@ -164,19 +164,20 @@ public class PlayerController : MonoBehaviour
     //   Event Subscription Functions    //
     // ################################## //
 
-  
+    // Whenever a scene loads via a door, updates players start position in new scene and which idle animation direction they face, 
     private void SetPositionVariablesOnDoorEnterOrExit(Vector2 _startPositionOfNewScene, int _idleAnimationDirection)
     {
         startPositionOfNewScene = _startPositionOfNewScene;
         idleAnimationDirection = _idleAnimationDirection; 
     }
+    //Whenever a scene(or the game) is loaded, call a function to set player position and targetposition. - This also stops the bug where player loads before the new scene does.
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         try
         {
             if (scene.isLoaded)
             {
-                SetPositionOnDoorEnterOrExit();
+                SetPositionOfPlayer();
             }
         }
         catch
@@ -185,7 +186,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetPositionOnDoorEnterOrExit()
+    //Set position of player and targetposition of player.
+    private void SetPositionOfPlayer()
     {
         isMoving = false;
         transform.position = startPositionOfNewScene;
@@ -195,8 +197,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("InputX", 0);
         animator.SetFloat("InputY", idleAnimationDirection);
     }
-
-
 
 
 

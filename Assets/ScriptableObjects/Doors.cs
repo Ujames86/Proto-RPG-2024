@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Doors", menuName = "Scriptable Objects/Doors", order = 1)]
-public class Doors : ScriptableObject
+public class Doors : ScriptableObject // Scriptable object for doors.
 {
     
     public string sceneName;
